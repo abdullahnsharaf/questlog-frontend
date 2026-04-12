@@ -5,6 +5,8 @@ import Navbar from './components/layout/Navbar';
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import SearchPage from './pages/SearchPage';
+import GameDetailPage from './pages/GameDetailPage';
 
 function ComingSoon({ page }) {
   return (
@@ -25,8 +27,9 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="/game/:gameId" element={<GameDetailPage />} />
               <Route path="/dashboard" element={<ComingSoon page="Dashboard" />} />
-              <Route path="/search" element={<ComingSoon page="Search" />} />
               <Route path="/library" element={<ComingSoon page="Library" />} />
               <Route path="/friends" element={<ComingSoon page="Friends" />} />
               <Route path="/profile" element={<ComingSoon page="Profile" />} />
