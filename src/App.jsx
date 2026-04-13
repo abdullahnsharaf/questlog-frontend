@@ -8,6 +8,7 @@ import RegisterPage from './pages/RegisterPage';
 import SearchPage from './pages/SearchPage';
 import GameDetailPage from './pages/GameDetailPage';
 import LibraryPage from './pages/LibraryPage';
+import FriendsPage from './pages/FriendsPage';
 
 function ComingSoon({ page }) {
   return (
@@ -31,9 +32,10 @@ function App() {
               <Route path="/search" element={<SearchPage />} />
               <Route path="/game/:gameId" element={<GameDetailPage />} />
               <Route path="/library" element={<LibraryPage />} />
+              <Route path="/friends" element={<FriendsPage />} />
               <Route path="/dashboard" element={<ComingSoon page="Dashboard" />} />
-              <Route path="/friends" element={<ComingSoon page="Friends" />} />
               <Route path="/profile" element={<ComingSoon page="Profile" />} />
+              <Route path="/profile/:username" element={<ComingSoon page="Profile" />} />
             </Routes>
           </main>
         </BrowserRouter>
