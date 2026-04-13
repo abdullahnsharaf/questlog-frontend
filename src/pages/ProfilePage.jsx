@@ -32,7 +32,7 @@ function ProfilePage() {
 
   const isOwnProfile = !username || username === currentUser?.username;
 
-  useEffect(() => {
+ useEffect(() => {
     async function load() {
       setLoading(true);
       try {
@@ -53,7 +53,7 @@ function ProfilePage() {
       }
     }
     load();
-  }, [username]);
+  }, [username, isOwnProfile]);
 
   if (loading) {
     return (

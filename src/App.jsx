@@ -11,6 +11,7 @@ import LibraryPage from './pages/LibraryPage';
 import FriendsPage from './pages/FriendsPage';
 import ActivityFeedPage from './pages/ActivityFeedPage';
 import ProfilePage from './pages/ProfilePage';
+import NotificationsPage from './pages/NotificationsPage';
 
 function ComingSoon({ page }) {
   return (
@@ -38,6 +39,7 @@ function App() {
               <Route path="/feed" element={<ActivityFeedPage />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/profile/:username" element={<ProfilePage />} />
+              <Route path="/notifications" element={<NotificationsPage />} />
               <Route path="/dashboard" element={<ComingSoon page="Dashboard" />} />
             </Routes>
           </main>

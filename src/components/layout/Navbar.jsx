@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
+import NotificationBell from '../ui/NotificationBell';
 
 const languages = [
   { code: 'en', label: 'EN', flag: '🇬🇧' },
@@ -18,9 +19,7 @@ function Navbar() {
   const [langOpen, setLangOpen] = useState(false);
 
   useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 20);
-    }
+    function onScroll() { setScrolled(window.scrollY > 20); }
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -46,28 +45,25 @@ function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Nav Links */}
+        {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6">
           {!isLoggedIn ? (
             <>
-              <a href="#features" className="text-gray-400 hover:text-indigo-400 transition text-sm font-medium">
-                {t.nav.features}
-              </a>
-              <a href="#contact" className="text-gray-400 hover:text-indigo-400 transition text-sm font-medium">
-                {t.nav.contact}
-              </a>
+              <a href="#features" className="text-gray-400 hover:text-indigo-400 transition text-sm font-medium">{t.nav.features}</a>
+              <a href="#contact" className="text-gray-400 hover:text-indigo-400 transition text-sm font-medium">{t.nav.contact}</a>
             </>
           ) : (
             <>
               <Link to="/search" className="text-gray-400 hover:text-indigo-400 transition text-sm font-medium">Search</Link>
               <Link to="/library" className="text-gray-400 hover:text-indigo-400 transition text-sm font-medium">Library</Link>
               <Link to="/friends" className="text-gray-400 hover:text-indigo-400 transition text-sm font-medium">Friends</Link>
+              <Link to="/feed" className="text-gray-400 hover:text-indigo-400 transition text-sm font-medium">Feed</Link>
             </>
           )}
         </div>
 
         {/* Right Side */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
 
           {/* Language Switcher */}
           <div className="relative">
@@ -75,7 +71,7 @@ function Navbar() {
               onClick={() => setLangOpen(!langOpen)}
               className="flex items-center gap-1 text-gray-400 hover:text-white transition text-sm px-2 py-1 rounded-lg hover:bg-white/5"
             >
-              <span>{languages.find((l) => l.code === language)?.flag}</span>
+              <span>{languages.find(l => l.code === language)?.flag}</span>
               <span className="text-xs font-medium">{language.toUpperCase()}</span>
               <svg className={`w-3 h-3 transition-transform ${langOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -83,7 +79,7 @@ function Navbar() {
             </button>
             {langOpen && (
               <div className="absolute right-0 top-10 glass rounded-xl p-1 min-w-[100px] border border-indigo-500/20">
-                {languages.map((lang) => (
+                {languages.map(lang => (
                   <button
                     key={lang.code}
                     onClick={() => { changeLanguage(lang.code); setLangOpen(false); }}
@@ -101,17 +97,16 @@ function Navbar() {
             )}
           </div>
 
+          {/* Notification Bell */}
+          <NotificationBell />
+
           {!isLoggedIn ? (
             <>
-              <Link to="/login" className="btn-outline text-sm py-2 px-4 hidden sm:block">
-                {t.nav.login}
-              </Link>
-              <Link to="/register" className="btn-primary text-sm py-2 px-4">
-                {t.nav.getStarted}
-              </Link>
+              <Link to="/login" className="btn-outline text-sm py-2 px-4 hidden sm:block">{t.nav.login}</Link>
+              <Link to="/register" className="btn-primary text-sm py-2 px-4">{t.nav.getStarted}</Link>
             </>
           ) : (
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <Link to="/profile" className="flex items-center gap-2 glass px-3 py-2 rounded-xl hover:border-indigo-500/50 transition">
                 <div className="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xs font-bold text-white">
                   {user?.username?.[0]?.toUpperCase() || 'U'}
@@ -153,6 +148,8 @@ function Navbar() {
               <Link to="/search" className="text-gray-400 hover:text-indigo-400 py-2">Search</Link>
               <Link to="/library" className="text-gray-400 hover:text-indigo-400 py-2">Library</Link>
               <Link to="/friends" className="text-gray-400 hover:text-indigo-400 py-2">Friends</Link>
+              <Link to="/feed" className="text-gray-400 hover:text-indigo-400 py-2">Feed</Link>
+              <Link to="/notifications" className="text-gray-400 hover:text-indigo-400 py-2">Notifications</Link>
               <button onClick={handleLogout} className="text-red-400 py-2 text-left">Logout</button>
             </>
           )}
