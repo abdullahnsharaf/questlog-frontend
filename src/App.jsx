@@ -9,6 +9,8 @@ import SearchPage from './pages/SearchPage';
 import GameDetailPage from './pages/GameDetailPage';
 import LibraryPage from './pages/LibraryPage';
 import FriendsPage from './pages/FriendsPage';
+import ActivityFeedPage from './pages/ActivityFeedPage';
+import ProfilePage from './pages/ProfilePage';
 
 function ComingSoon({ page }) {
   return (
@@ -33,9 +35,10 @@ function App() {
               <Route path="/game/:gameId" element={<GameDetailPage />} />
               <Route path="/library" element={<LibraryPage />} />
               <Route path="/friends" element={<FriendsPage />} />
+              <Route path="/feed" element={<ActivityFeedPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/profile/:username" element={<ProfilePage />} />
               <Route path="/dashboard" element={<ComingSoon page="Dashboard" />} />
-              <Route path="/profile" element={<ComingSoon page="Profile" />} />
-              <Route path="/profile/:username" element={<ComingSoon page="Profile" />} />
             </Routes>
           </main>
         </BrowserRouter>
